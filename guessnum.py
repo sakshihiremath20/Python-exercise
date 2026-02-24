@@ -34,4 +34,4 @@ while guess_counter<chances:
 
 
 if guess_counter==chances and guess!=num:
-    print(f"Game over!The number to guess was {num}") 
+    print(f"Game over!The number to guess was {num}")
