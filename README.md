@@ -11,4 +11,5 @@ These projects focus on strengthening fundamental programming concepts such as:
 
 ## Projects included are :-
 1.Number guessing game
+2.Basic Library management
 
