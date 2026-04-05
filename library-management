@@ -1,0 +1,80 @@
+class Library:
+    def __init__(self, listofbooks):
+        self.books = listofbooks
+        self.track = []
+
+    def displayavailablebooks(self):
+        print(f"\n{len(self.books)} available books in the library are:")
+        for book in self.books:
+            print(">--", book)
+        print("\n")
+
+    def borrowbook(self, name, bookname):
+        if bookname not in self.books:
+            print(f"{bookname} is not available.\n")
+        else:
+            self.track.append({name: bookname}) 
+            print("Book issued successfully.\n")
+            self.books.remove(bookname)
+
+    def returnbook(self, name, bookname):
+        print("Book returned. Thank you!\n")
+        self.books.append(bookname)
+
+        if {name: bookname} in self.track:
+            self.track.remove({name: bookname})  
+
+    def donatebook(self, bookname):
+        print("Book donated. Thank you!\n")
+        self.books.append(bookname)
+
+
+class Student:
+    def requestbook(self):
+        name = input("Enter your name: ")
+        book = input("Enter the book you want: ")
+        return name, book  
+
+    def returnbook(self):
+        name = input("Enter your name: ")
+        book = input("Enter book to return: ")
+        return name, book  
+
+    def donatebook(self):
+        book = input("Enter book to donate: ")
+        return book
+
+
+if __name__ == "__main__":
+    HomeLibrary = Library([
+        "here and there", "wise and otherwise", "mahashweta",
+        "rich&poor", "the alchemist"
+    ])
+
+    student = Student()
+
+    while True:
+        print("\n1.Display\n2.Borrow\n3.Return\n4.Donate\n5.Exit")
+
+        user_choice = int(input("Enter your choice: "))
+
+        if user_choice == 1:
+            HomeLibrary.displayavailablebooks()
+
+        elif user_choice == 2:
+            name, book = student.requestbook()
+            HomeLibrary.borrowbook(name, book)
+
+        elif user_choice == 3:
+            name, book = student.returnbook()
+            HomeLibrary.returnbook(name, book)
+
+        elif user_choice == 4:
+            HomeLibrary.donatebook(student.donatebook())
+
+        elif user_choice == 5:
+            print("Thank you!")
+            break
+
+        else:
+            print("Invalid choice\n")
